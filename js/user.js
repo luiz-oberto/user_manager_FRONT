@@ -19,9 +19,22 @@ async function createUser() {
     const email = document.getElementById("email").value;
     const senha = document.getElementById("senha").value;
     const confirmSenha = document.getElementById("confirmSenha").value;
+    console.log("senha:", senha)
+    console.log("confirm:", confirmSenha)
+
  
     if (senha !== confirmSenha) {
         alert("As senhas não coincidem!");
+        return;
+    }
+
+    if (!senha || !confirmSenha) {
+        alert("Preencha a senha corretamente");
+        return;
+    }
+
+    if (senha.length < 6) {
+        alert("Senha muito curta");
         return;
     }
 
