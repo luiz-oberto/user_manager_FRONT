@@ -14,11 +14,32 @@ function getHeaders() {
 function checkAuth() {
     if (!getToken()) {
         window.location.href = "index.html";
+        return false;
     }
+    return true;
 }
 
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
     const base64 = atob(base64Url);
     return JSON.parse(base64);
+}
+
+function checkSuperUserAccess() {
+    const token = getToken();
+
+    if (!token) {
+        window.location.href = "index.html";
+        return false;
+    }
+
+    const isSuper = localStorage.getItem("is_superuser");
+
+    if (isSuper !== "true") {
+        alert("Acesso restrito!");
+        window.location.href = "profile.html";
+        return false;
+    }
+
+    return true;
 }

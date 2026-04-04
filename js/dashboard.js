@@ -1,3 +1,9 @@
+function initDashboard() {
+    checkAuth();
+    checkSuperUserAccess();
+    loadUsers();
+}
+
 async function loadUsers() {
     checkAuth();
 
